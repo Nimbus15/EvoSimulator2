@@ -28,6 +28,8 @@ public class Flocking : MonoBehaviour
     public Vector2 acceleration;
     public Vector2 velocity;
 
+    public LayerMask creatureLayer;
+
     private Vector2 Position
     {
         get
@@ -49,7 +51,7 @@ public class Flocking : MonoBehaviour
 
     private void Update()
     {
-        var boidColliders = Physics2D.OverlapCircleAll(Position, neighborhoodRadius);
+        var boidColliders = Physics2D.OverlapCircleAll(Position, neighborhoodRadius, creatureLayer);
         var boids = boidColliders.Select(o => o.GetComponent<Flocking>()).ToList();
         boids.Remove(this);
 
@@ -82,7 +84,7 @@ public class Flocking : MonoBehaviour
 
     private void UpdateRotation()
     {
-        var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+        var angle = Mathf.Atan2(-velocity.x, velocity.y) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle) + baseRotation);
     }
 

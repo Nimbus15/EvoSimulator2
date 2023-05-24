@@ -17,7 +17,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Predator
   - Creature
   - Environment
   - 
@@ -46,4 +46,10 @@ TagManager:
     locked: 0
   - name: Creature
     uniqueID: 4142950015
+    locked: 0
+  - name: Plant
+    uniqueID: 851255893
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 3424187385
     locked: 0
