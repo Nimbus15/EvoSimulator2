@@ -22,7 +22,7 @@ public class Predator : MonoBehaviour
 
     protected float detectionRadius=2.0f;
 
-    public LayerMask creatureLayer;
+    public LayerMask preyLayer;
 
     protected Collider2D[] creaturesInRange;
 
@@ -64,9 +64,9 @@ public class Predator : MonoBehaviour
 
     void DetectPrey()
     {
-        creaturesInRange = Physics2D.OverlapCircleAll(transform.position, detectionRadius, creatureLayer);
-        if (creaturesInRange.Any() && predatorState == PredatorState.WANDER) predatorState = PredatorState.CHASE;
-
+        creaturesInRange = Physics2D.OverlapCircleAll(transform.position, detectionRadius, preyLayer);
+        if (creaturesInRange.Any() && predatorState == PredatorState.WANDER) 
+            predatorState = PredatorState.CHASE;
     }
     void WanderPredator()
     {

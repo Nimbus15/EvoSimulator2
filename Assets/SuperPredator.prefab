@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6658762882030712481}
   - component: {fileID: 6658762882030712542}
   - component: {fileID: 6658762882030712543}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SuperPredator
-  m_TagString: Untagged
+  m_TagString: SuperPredator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6658762882030712485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.695, y: -3.571, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: -152017281
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 322621169, guid: 85e0e6fbf3972d5479c5ca78b1794b6a, type: 3}
+  m_Sprite: {fileID: 1811700828, guid: 85e0e6fbf3972d5479c5ca78b1794b6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffee3fc016f14349a42aa1383e43b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creatureLayer:
+  preyLayer:
     serializedVersion: 2
     m_Bits: 4096
 --- !u!114 &6658762882030712481
@@ -155,7 +155,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.05, y: 2.44}
+    oldSize: {x: 3.6, y: 3.01}
     newSize: {x: 2.02, y: 1.93}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

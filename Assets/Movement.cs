@@ -65,6 +65,8 @@ public class Movement : MonoBehaviour
     //CHASE
     public void Chase(Collider2D targetToChase)
     {
+        if (targetToChase == null)
+            return;
         Vector2 targetDirection = targetToChase.transform.position - transform.position;
         myRigidbody.velocity = targetDirection * chaseSpeed;
         transform.up = myRigidbody.velocity;
@@ -75,6 +77,8 @@ public class Movement : MonoBehaviour
     protected float rotationSpeedRadian = 0.1f;
     public void SteeringChase(Collider2D targetToChase)
     {
+        if (targetToChase == null)
+            return;
         rotationSpeedRadian = Mathf.Abs(targetToChase.GetComponent<Movement>().randDirectionFloat);
         Vector2 rotatedTowardsDirection = Vector3.RotateTowards(transform.up, targetToChase.transform.position - transform.position,
             rotationSpeedRadian * Time.deltaTime, 0);
@@ -87,9 +91,10 @@ public class Movement : MonoBehaviour
     public void Attack(Collider2D targetToKill)
     {
         elaspedTime += Time.deltaTime;
-        if(elaspedTime > 0.5f)
+        if(elaspedTime > 0.2f)
         {
             Destroy(targetToKill.gameObject);
+            Debug.Log("Target Killed: " + targetToKill.gameObject.tag);
             elaspedTime = 0.0f;
         }
     }

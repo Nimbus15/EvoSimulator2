@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Prey
+  - Predator
+  - SuperPredator
   layers:
   - Default
   - TransparentFX
@@ -15,10 +18,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - Predator
   - Creature
+  - SuperPredator
+  - Predator
+  - Prey
   - Environment
   - 
   - 

@@ -28,7 +28,7 @@ public class Flocking : MonoBehaviour
     public Vector2 acceleration;
     public Vector2 velocity;
 
-    public LayerMask creatureLayer;
+    public LayerMask preyLayer;
 
     private Vector2 Position
     {
@@ -51,7 +51,7 @@ public class Flocking : MonoBehaviour
 
     private void Update()
     {
-        var boidColliders = Physics2D.OverlapCircleAll(Position, neighborhoodRadius, creatureLayer);
+        var boidColliders = Physics2D.OverlapCircleAll(Position, neighborhoodRadius, preyLayer);
         var boids = boidColliders.Select(o => o.GetComponent<Flocking>()).ToList();
         boids.Remove(this);
 
@@ -95,6 +95,8 @@ public class Flocking : MonoBehaviour
 
         foreach (var boid in boids)
         {
+            if (boid == null)
+                break;
             velocity += boid.velocity;
         }
         velocity /= boids.Count();
@@ -110,6 +112,8 @@ public class Flocking : MonoBehaviour
         var sumPositions = Vector2.zero;
         foreach (var boid in boids)
         {
+            if (boid == null)
+                break;
             sumPositions += boid.Position;
         }
         var average = sumPositions / boids.Count();
@@ -127,6 +131,8 @@ public class Flocking : MonoBehaviour
 
         foreach (var boid in boids)
         {
+            if (boid == null)
+                 break;
             var difference = Position - boid.Position;
             direction += difference.normalized / difference.magnitude;
         }
@@ -146,6 +152,8 @@ public class Flocking : MonoBehaviour
 
     private float DistanceTo(Flocking boid)
     {
+        if (boid == null)
+            return 0.0f;
         return Vector3.Distance(boid.transform.position, Position);
     }
 
