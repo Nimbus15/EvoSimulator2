@@ -82,6 +82,7 @@ public class Spawner : MonoBehaviour
                     GameObject pp = GameObject.Instantiate(poisonPrey);
                     pp.transform.position = new Vector2(position.x, position.y);
                     pp.transform.parent = this.transform;
+                    preysTotal++;
                 }
                
                 GameObject p = GameObject.Instantiate(prey);

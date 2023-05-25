@@ -1,10 +1,13 @@
 This is an Food Chain Simulator.
 It shows creatures in a food chain. 
-The prey is hunted by the predator and the predator is hunted by the superpredator. 
-There is a death counter. The Debug Console will show the kill activity. This project can 
-be upgraded to be an Evolution Simulator in the future.
+The prey is hunted by the predator and the predator is hunted by the superpredator. Some prey are known a poisonPrey, 
+once eatten the predator will die after 3 seconds as they are poisonous.
+There is a death counter. The Debug Console will show the kill activity. 
+The "eating" sound effect was turn off after careful consideration.
+This project can be upgraded to be an Evolution Simulator in the future.
 
 Key:
+PoisonPrey- Green Spider
 Prey - Larvae
 Predator - Bettle
 Superpredator - Spider
