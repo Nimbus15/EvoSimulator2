@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class DeathCounter : MonoBehaviour
 {
-    public DeathCounter dc;
+    public static DeathCounter dc;
     public static int preyDeaths=0;
     public static int predatorDeaths =0;
     public static int superPredatorDeaths =0;
+
+    //Get Components
+    public GameObject preyText;
+    public GameObject predatorText;
+    public GameObject superPredatorText;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(dc == null)
+        if (dc == null)
         {
             dc = this.gameObject.GetComponent<DeathCounter>();
         }
@@ -20,7 +28,7 @@ public class DeathCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        PrintDeaths();
     }
 
 
@@ -38,11 +46,14 @@ public class DeathCounter : MonoBehaviour
         }
     }
 
-    private void PrintDeaths()
+    void PrintDeaths()
     {
-        Debug.Log("Prey Killed" + preyDeaths);
-        Debug.Log("Predator Killed" + predatorDeaths);
-        Debug.Log("SuperPredator Killed" + superPredatorDeaths);
+        string preyDeathsString = "Prey Deaths: " + preyDeaths.ToString();
+        string predatorDeathsString = "Predator Deaths: " + predatorDeaths.ToString();
+        string superPredatorDeathsString = "SuperPredator Deaths: " + superPredatorDeaths.ToString();
 
+        preyText.GetComponent<TextMeshProUGUI>().text = preyDeathsString;
+        predatorText.GetComponent<TextMeshProUGUI>().text = predatorDeathsString;
+        superPredatorText.GetComponent<TextMeshProUGUI>().text = superPredatorDeathsString;
     }
 }

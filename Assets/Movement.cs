@@ -2,20 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO LIST
-//Confine To Environment //* Jitterwandering
-//Move the Camera using "WASD" keys//** Input system
-//Health or instant death //** health
-//Duplicate Preys **
-//Creature Fill Needs **
-
-//Food - grass **
-
-//Individual //if together in range > 3 then flock
-//Flocks - SAP
-//Procreate //if > 1 in range and flock and wait 5mins then duplicate smaller
-//Create Predator
-
 
 public class Movement : MonoBehaviour
 {
@@ -98,7 +84,6 @@ public class Movement : MonoBehaviour
             {
                 rotationSpeed -= 5;
             }
-            //rotationSpeedRadian = targetAngularSpeed;
         }
     }
     float elaspedTime = 0.0f;
@@ -110,6 +95,11 @@ public class Movement : MonoBehaviour
         {
             Debug.Log(this.gameObject.tag + " Killed: " + targetToKill.gameObject.tag);
             DeathCounter.TrackDeath(targetToKill.gameObject.tag);
+            int randInt = Random.Range(0, 11);
+            if(randInt == 5)
+                AudioManager.am.PlayEat();
+            if (targetToKill.tag == "PoisonPrey")
+                Destroy(this.gameObject, 3.0f);
             Destroy(targetToKill.gameObject);
             elaspedTime = 0.0f;
         }

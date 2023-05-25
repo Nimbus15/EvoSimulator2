@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-//Reference https://github.com/RafaelKuebler/Flocking/blob/master/Assets/Scripts/Flocking.cs
+//From https://github.com/RafaelKuebler/Flocking/blob/master/Assets/Scripts/Flocking.cs
+//=== Reference ===
 public class Flocking : MonoBehaviour
 {
     public Vector3 baseRotation;
@@ -174,3 +175,4 @@ public class Flocking : MonoBehaviour
         if (Position.y > 8) Position = new Vector2(Position.x, -8);
     }
 }
+//=== Reference ===

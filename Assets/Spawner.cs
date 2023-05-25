@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject prey;
+    public GameObject poisonPrey;
     public GameObject predator;
     public GameObject superpredator;
 
@@ -74,11 +75,18 @@ public class Spawner : MonoBehaviour
             GameObject[] preys = GameObject.FindGameObjectsWithTag("Prey");
             if (preys.Length < preysTotal)
             {
-                GameObject a = GameObject.Instantiate(prey);
+                int RNG = Random.Range(0, 11);
                 Vector2 position = Random.insideUnitCircle * spawnRadius;
-                //a.transform.position = new Vector3(position.x, 0, position.y);
-                a.transform.position = new Vector2(position.x, position.y);
-                a.transform.parent = this.transform;
+                if (RNG == 5)
+                {
+                    GameObject pp = GameObject.Instantiate(poisonPrey);
+                    pp.transform.position = new Vector2(position.x, position.y);
+                    pp.transform.parent = this.transform;
+                }
+               
+                GameObject p = GameObject.Instantiate(prey);
+                p.transform.position = new Vector2(position.x, position.y);
+                p.transform.parent = this.transform;
                 yield return new WaitForSeconds(5.0f / (float)spawnPreyRate);
 
             }

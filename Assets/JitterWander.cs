@@ -4,32 +4,12 @@ using UnityEngine;
 
 public class JitterWander 
 {
-
-    ////Steering=====
-    //public float weight = 1.0f;
-    //public Vector2 force;
-    ////=============
-
-
-
     private static float distance = 5;//20
     private static float radius = 2.5f;//10
     private static float jitter = 25;//100
 
     private static Vector2 target;
     private static Vector2 worldTarget;
-
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    target = Random.insideUnitSphere * radius;
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
 
     public static Vector3 Calculate(Transform predatorTransform)
     {
