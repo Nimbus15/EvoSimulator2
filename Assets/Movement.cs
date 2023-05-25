@@ -24,8 +24,8 @@ public class Movement : MonoBehaviour
     public BoxCollider2D environmentBoundary;
     private Rigidbody2D myRigidbody;
 
-    public float randDirectionFloat;
-    const float angularVelocity = 60.0f;
+    public int randDirectionInt;
+    float angularVelocity = 60.0f;
     void Awake()
     {
         myCollider = GetComponent<BoxCollider2D>();
@@ -34,7 +34,8 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-       // StartCoroutine(RotateCreature());
+        angularVelocity = Random.Range(40.0f, 60.0f);
+        // StartCoroutine(RotateCreature());
     }
 
     // Update is called once per frame
@@ -49,13 +50,13 @@ public class Movement : MonoBehaviour
         Vector3 newPosition = JitterWander.Calculate(this.transform);
         float randForwardFloat = Random.Range(0.2f, 1.0f);
 
-        transform.eulerAngles += new Vector3(0, 0, randDirectionFloat * Time.deltaTime * angularVelocity);
+        transform.eulerAngles += new Vector3(0, 0, randDirectionInt * Time.deltaTime * angularVelocity);
         myRigidbody.velocity = newPosition + transform.up * randForwardFloat;
     } 
 
     public IEnumerator RotateCreature()
     {
-        randDirectionFloat = Random.Range(-1.0f, 1.0f);
+        randDirectionInt = Random.Range(-1, 2);
         yield return new WaitForSeconds(2);
         StartCoroutine(RotateCreature());
     }
@@ -72,20 +73,34 @@ public class Movement : MonoBehaviour
         transform.up = myRigidbody.velocity;
     }
 
-
+    float elaspedLiveTime = 0.0f;
     //Steering CHASE
-    protected float rotationSpeedRadian = 0.1f;
+    protected float rotationSpeed = 0.1f;
+
     public void SteeringChase(Collider2D targetToChase)
     {
+        elaspedLiveTime += Time.deltaTime;
         if (targetToChase == null)
             return;
-        rotationSpeedRadian = Mathf.Abs(targetToChase.GetComponent<Movement>().randDirectionFloat);
+        //rotationSpeedRadian = Mathf.Abs(targetToChase.GetComponent<Movement>().randDirectionInt);
         Vector2 rotatedTowardsDirection = Vector3.RotateTowards(transform.up, targetToChase.transform.position - transform.position,
-            rotationSpeedRadian * Time.deltaTime, 0);
+            rotationSpeed * Time.deltaTime * Mathf.Rad2Deg, 0);
         myRigidbody.velocity = rotatedTowardsDirection * chaseSpeed;
         transform.up = myRigidbody.velocity;
+        if (elaspedLiveTime > 0.2f)
+        {
+            float targetAngularSpeed = Mathf.Abs(targetToChase.GetComponent<Movement>().angularVelocity);
+            if (targetAngularSpeed > rotationSpeed)
+            {
+                rotationSpeed += 5;
+            }
+            else
+            {
+                rotationSpeed -= 5;
+            }
+            //rotationSpeedRadian = targetAngularSpeed;
+        }
     }
-
     float elaspedTime = 0.0f;
     //ATTACK
     public void Attack(Collider2D targetToKill)
