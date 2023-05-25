@@ -12,15 +12,54 @@ public class Spawner : MonoBehaviour
     public int predatorsTotal = 5;
     public int superPredatorsTotal = 5;
 
-    public int spawnRate = 2;
+    public int spawnPreyRate = 10;
+    public int spawnPredatorRate = 5;
+    public int spawnSuperpredatorRate = 1;
+
     public float spawnRadius = 20.0f;
 
     public void OnEnable()
     {
-        StartCoroutine(Spawn());
+        StartCoroutine(SpawnPrey());
+        StartCoroutine(SpawnPredator());
+        StartCoroutine(SpawnSuperPredator());
     }
 
-    IEnumerator Spawn()
+    IEnumerator SpawnSuperPredator()
+    {
+        while (true)
+        {
+            GameObject[] superPredators = GameObject.FindGameObjectsWithTag("SuperPredator");
+            if (superPredators.Length < superPredatorsTotal)
+            {
+                GameObject sp = GameObject.Instantiate(superpredator);
+                Vector2 position = Random.insideUnitCircle * spawnRadius;
+                sp.transform.position = new Vector2(position.x, position.y);
+                sp.transform.parent = this.transform;
+                yield return new WaitForSeconds(5.0f / (float)spawnSuperpredatorRate);
+
+            }
+        }
+    }
+
+
+    IEnumerator SpawnPredator()
+    {
+        while (true)
+        {
+            GameObject[] predators = GameObject.FindGameObjectsWithTag("Predator");
+            if (predators.Length < predatorsTotal)
+            {
+                GameObject p = GameObject.Instantiate(predator);
+                Vector2 position = Random.insideUnitCircle * spawnRadius;
+                p.transform.position = new Vector2(position.x, position.y);
+                p.transform.parent = this.transform;
+                yield return new WaitForSeconds(5.0f / (float)spawnPredatorRate);
+            }
+        }
+    }
+
+    IEnumerator SpawnPrey()
     {
         while(true)
         {
@@ -31,29 +70,14 @@ public class Spawner : MonoBehaviour
                 Vector2 position = Random.insideUnitCircle * spawnRadius;
                 //a.transform.position = new Vector3(position.x, 0, position.y);
                 a.transform.position = new Vector2(position.x, position.y);
-                //a.transform.parent = this.transform;
-              
-            }
-            GameObject[] predators = GameObject.FindGameObjectsWithTag("Predator");
-            if (predators.Length < predatorsTotal)
-            {
-                GameObject p = GameObject.Instantiate(predator);
-                Vector2 position = Random.insideUnitCircle * spawnRadius;
-                p.transform.position = new Vector2(position.x, position.y);
-                //p.transform.parent = this.transform;
-                
-            }
-            GameObject[] superPredators = GameObject.FindGameObjectsWithTag("SuperPredator");
-            if (superPredators.Length < superPredatorsTotal)
-            {
-                GameObject sp = GameObject.Instantiate(superpredator);
-                Vector2 position = Random.insideUnitCircle * spawnRadius;
-                sp.transform.position = new Vector2(position.x, position.y);
-                //sp.transform.parent = this.transform;
-                
-            }
+                a.transform.parent = this.transform;
+                yield return new WaitForSeconds(5.0f / (float)spawnPreyRate);
 
-            yield return new WaitForSeconds( 5.0f / (float) spawnRate);
+            }
+            
+          
+
+           // yield return new WaitForSeconds( 5.0f / (float) spawnRate);
         }
     }
 

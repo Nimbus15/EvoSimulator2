@@ -153,7 +153,7 @@ public class Flocking : MonoBehaviour
     private float DistanceTo(Flocking boid)
     {
         if (boid == null)
-            return 0.0f;
+            return float.MaxValue;
         return Vector3.Distance(boid.transform.position, Position);
     }
 

@@ -94,7 +94,8 @@ public class Predator : MonoBehaviour
 
     void AttackPrey()
     {
-        movementScript.Attack(targetCollider2D);
+        if(targetCollider2D != null)
+            movementScript.Attack(targetCollider2D);
         if(targetCollider2D == null)
         {
             predatorState = PredatorState.REST;
