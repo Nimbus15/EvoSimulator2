@@ -93,9 +93,9 @@ public class Movement : MonoBehaviour
         elaspedTime += Time.deltaTime;
         if(elaspedTime > 0.2f)
         {
-            Destroy(targetToKill.gameObject);
             Debug.Log(this.gameObject.tag + " Killed: " + targetToKill.gameObject.tag);
             DeathCounter.TrackDeath(targetToKill.gameObject.tag);
+            Destroy(targetToKill.gameObject);
             elaspedTime = 0.0f;
         }
     }

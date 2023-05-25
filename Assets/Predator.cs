@@ -97,15 +97,13 @@ public class Predator : MonoBehaviour
         if(targetCollider2D != null)
             movementScript.Attack(targetCollider2D);
         if(targetCollider2D == null)
-        {
-            predatorState = PredatorState.REST;
-        }
+            predatorState = PredatorState.REST; 
     }
 
     IEnumerator RestPredator()
     {
         movementScript.Rest();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5.0f);
         predatorState = PredatorState.WANDER;
     }
 

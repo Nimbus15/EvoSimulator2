@@ -13,7 +13,7 @@ public class DeathCounter : MonoBehaviour
     {
         if(dc == null)
         {
-            dc = this;
+            dc = this.gameObject.GetComponent<DeathCounter>();
         }
     }
 

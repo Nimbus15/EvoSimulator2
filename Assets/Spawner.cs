@@ -37,8 +37,12 @@ public class Spawner : MonoBehaviour
                 sp.transform.position = new Vector2(position.x, position.y);
                 sp.transform.parent = this.transform;
                 yield return new WaitForSeconds(5.0f / (float)spawnSuperpredatorRate);
-
             }
+            else
+            {
+                yield return 0;
+            }
+            
         }
     }
 
@@ -55,6 +59,10 @@ public class Spawner : MonoBehaviour
                 p.transform.position = new Vector2(position.x, position.y);
                 p.transform.parent = this.transform;
                 yield return new WaitForSeconds(5.0f / (float)spawnPredatorRate);
+            }
+            else
+            {
+                yield return 0;
             }
         }
     }
@@ -74,10 +82,14 @@ public class Spawner : MonoBehaviour
                 yield return new WaitForSeconds(5.0f / (float)spawnPreyRate);
 
             }
-            
-          
+            else
+            {
+                yield return 0;
+            }
 
-           // yield return new WaitForSeconds( 5.0f / (float) spawnRate);
+
+
+            // yield return new WaitForSeconds( 5.0f / (float) spawnRate);
         }
     }
 
